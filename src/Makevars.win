@@ -2,7 +2,13 @@ PYTHON_DIR=Python-3.7.0
 USER_INST_DIR=${R_PACKAGE_DIR}/inst/python
 LDFLAGS2=$(LDFLAGS) "-Wl,-rpath,${USER_INST_DIR}/lib"
 
-# Copy Python headers and libraries:
+# install pip and virtualenv
+installing: copying
+	"${USER_INST_DIR}/bin/python3.exe" get-pip.py
+	echo "Lib/site-packages" >> "${USER_INST_DIR}"/bin/python37._pth
+	"${USER_INST_DIR}/bin/python3.exe" -m pip install --upgrade --user virtualenv
+
+# Copy Python binary & create links to trick system.file():
 copying:
 	mkdir -p "${USER_INST_DIR}/bin"
 	cp ${PYTHON_DIR}/* "${USER_INST_DIR}/bin"

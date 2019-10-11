@@ -78,7 +78,7 @@ setupVirtualEnv <- function(envname, packages, pkgname=NULL) {
 }
 
 .get_basilisk_envdir <- function(pkgname) {
-    file.path(.libPaths(), pkgname, "inst", "basilisk")
+    file.path(.libPaths()[1], pkgname, "inst", "basilisk")
 }
 
 #' @export
