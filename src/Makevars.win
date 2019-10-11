@@ -1,0 +1,10 @@
+PYTHON_DIR=Python-3.7.0
+USER_INST_DIR=${R_PACKAGE_DIR}/inst/python
+LDFLAGS2=$(LDFLAGS) "-Wl,-rpath,${USER_INST_DIR}/lib"
+
+# Copy Python headers and libraries:
+copying:
+	mkdir -p "${USER_INST_DIR}/bin"
+	cp ${PYTHON_DIR}/* "${USER_INST_DIR}/bin"
+	ln -s "${USER_INST_DIR}/bin/python.exe" "${USER_INST_DIR}/bin/python3"
+	ln -s "${USER_INST_DIR}/bin/python.exe" "${USER_INST_DIR}/bin/python3.exe"
